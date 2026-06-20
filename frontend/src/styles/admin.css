@@ -1,0 +1,507 @@
+/* ==========================================================================
+   ADMIN PANEL WORKSPACE STYLES
+   ========================================================================== */
+
+:root {
+    --sidebar-width: 280px;
+}
+
+/* Unified Admin Layout */
+.admin-workspace {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr;
+    min-height: 100vh;
+    background-color: var(--background);
+}
+
+@media (max-width: 992px) {
+    .admin-workspace {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Sidebar Navigation */
+.admin-sidebar {
+    background-color: var(--surface);
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    padding: 30px 24px;
+    border-right: 1px solid var(--border);
+    z-index: 100;
+    transition: var(--transition);
+}
+
+@media (max-width: 992px) {
+    .admin-sidebar {
+        height: auto;
+        position: relative;
+        padding: 20px;
+        gap: 20px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+}
+
+/* Sidebar Brand */
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 40px;
+}
+
+.sidebar-brand-logo {
+    font-size: 1.5rem;
+    color: var(--secondary);
+}
+
+.sidebar-brand h2 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--secondary);
+}
+
+/* Sidebar Nav Menu */
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    color: var(--text-secondary);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    border: none;
+    background: transparent;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+}
+
+.sidebar-link:hover {
+    color: var(--secondary);
+    background-color: var(--surface-hover);
+}
+
+.sidebar-link.active {
+    color: var(--surface);
+    background-color: var(--secondary);
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
+}
+
+/* Sidebar User profile card */
+.sidebar-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+}
+
+.profile-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--secondary);
+    color: var(--surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.profile-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.profile-role {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Admin Main Content Scroll container */
+.admin-content {
+    padding: 40px 50px;
+    overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+    .admin-content {
+        padding: 24px 20px;
+    }
+}
+
+/* Administrative Overview Section styling */
+.overview-distribution {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 40px;
+}
+
+.distribution-header {
+    margin-bottom: 24px;
+}
+
+.distribution-header h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--secondary);
+    margin-bottom: 4px;
+}
+
+.distribution-header p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.distribution-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.dist-bar-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dist-bar-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.dist-bar-track {
+    height: 10px;
+    background-color: var(--surface-hover);
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+.dist-bar-fill {
+    height: 100%;
+    border-radius: 5px;
+    transition: width 1s ease-in-out;
+}
+
+.dist-fill-available {
+    background-color: var(--success);
+}
+
+.dist-fill-borrowed {
+    background-color: var(--warning);
+}
+
+/* Admin system logs panel */
+.system-logs-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    box-shadow: var(--shadow-sm);
+}
+
+.system-logs-card h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--secondary);
+    margin-bottom: 20px;
+}
+
+.log-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.log-item {
+    display: flex;
+    gap: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.log-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.log-status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-top: 6px;
+    flex-shrink: 0;
+}
+
+.log-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.log-message {
+    font-size: 0.925rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.log-time {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   INVENTORY DRAWER & PAGINATION
+   ========================================================================== */
+
+/* Drawer Slide-out container */
+.drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.drawer-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.drawer-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 480px;
+    max-width: 100vw;
+    height: 100vh;
+    background-color: var(--surface);
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.08);
+    z-index: 1001;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.drawer-panel.open {
+    transform: translateX(0);
+}
+
+.drawer-header {
+    padding: 24px 30px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.drawer-header h3 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--secondary);
+}
+
+.drawer-close-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.drawer-close-btn:hover {
+    background-color: var(--surface-hover);
+    color: var(--secondary);
+}
+
+.drawer-body {
+    padding: 30px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+/* Catalog Filter Panel */
+.catalog-filters {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 24px;
+    background-color: var(--surface);
+    padding: 16px 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+}
+
+.catalog-search-input {
+    flex-grow: 2;
+    min-width: 240px;
+}
+
+.catalog-select-filter {
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background-color: var(--surface);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.catalog-select-filter:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.08);
+}
+
+/* Pagination Row */
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-top: 1px solid var(--border);
+    background-color: var(--surface);
+    border-bottom-left-radius: var(--radius-md);
+    border-bottom-right-radius: var(--radius-md);
+}
+
+@media (max-width: 576px) {
+    .pagination-container {
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+.pagination-info {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pagination-btn {
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background-color: var(--surface-hover);
+    border-color: var(--text-muted);
+}
+
+.pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination-pages {
+    display: flex;
+    gap: 4px;
+}
+
+.page-num {
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: var(--transition);
+}
+
+.page-num:hover:not(.active) {
+    background-color: var(--surface-hover);
+    color: var(--text-primary);
+}
+
+.page-num.active {
+    background-color: var(--secondary);
+    color: var(--surface);
+}
+
+/* Trigger Button */
+.add-book-trigger-btn {
+    background-color: var(--secondary);
+    color: var(--surface);
+    padding: 12px 24px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+}
+
+.add-book-trigger-btn:hover {
+    background-color: var(--secondary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2);
+}

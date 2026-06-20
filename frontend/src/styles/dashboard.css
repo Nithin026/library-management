@@ -1,0 +1,135 @@
+/* Dashboard Layout */
+.dashboard {
+    padding: 40px 8%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Header */
+.dashboard-header {
+    margin-bottom: 40px;
+}
+
+.dashboard-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--secondary);
+    margin-bottom: 8px;
+}
+
+.dashboard-header p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* Stats Cards Grid */
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    margin-bottom: 50px;
+}
+
+.stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--secondary);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--border);
+}
+
+.stat-card:hover::before {
+    opacity: 1;
+}
+
+.stat-card h2 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--secondary);
+    margin-bottom: 6px;
+    line-height: 1;
+}
+
+.stat-card p {
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Quick Actions */
+.dashboard-actions {
+    margin-bottom: 50px;
+}
+
+.dashboard-actions h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--secondary);
+    margin-bottom: 20px;
+}
+
+.action-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.action-grid button {
+    width: 100%;
+    background: var(--surface);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 18px;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.action-grid button:hover {
+    background: var(--secondary);
+    color: var(--surface);
+    border-color: var(--secondary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .dashboard {
+        padding: 24px 4%;
+    }
+    
+    .dashboard-header h1 {
+        font-size: 2rem;
+    }
+}

@@ -1,0 +1,249 @@
+/* ==========================================
+   BORROW PAGE
+========================================== */
+
+.borrow-page{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:40px 20px;
+
+    background:linear-gradient(135deg,#eef4ff,#f8fafc);
+}
+
+/* ==========================================
+   CARD
+========================================== */
+
+.borrow-card{
+
+    width:100%;
+
+    max-width:520px;
+
+    background:#fff;
+
+    padding:45px;
+
+    border-radius:22px;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.08);
+
+    text-align:center;
+
+    animation:fadeUp .5s ease;
+}
+
+.borrow-card h1{
+
+    font-size:2.2rem;
+
+    color:#111827;
+
+    margin-bottom:10px;
+
+    font-weight:800;
+}
+
+.borrow-subtitle{
+
+    color:#64748b;
+
+    margin-bottom:35px;
+
+    line-height:1.6;
+}
+
+/* ==========================================
+   BOOK INFO
+========================================== */
+
+.book-info{
+
+    background:linear-gradient(135deg, var(--secondary) 0%, var(--secondary-hover) 100%);
+
+    color:#fff;
+
+    border-radius:var(--radius-md);
+
+    padding:20px;
+
+    margin-bottom:30px;
+
+    border:1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:0 8px 24px rgba(15, 23, 42, 0.1);
+}
+
+.book-info span{
+
+    display:block;
+
+    opacity:.9;
+
+    font-size:.9rem;
+
+    margin-bottom:8px;
+}
+
+.book-info h2{
+
+    margin:0;
+
+    font-size:2rem;
+
+    font-weight:700;
+}
+
+/* ==========================================
+   FORM
+========================================== */
+
+.form-group{
+
+    text-align:left;
+
+    margin-bottom:30px;
+}
+
+.form-group label{
+
+    display:block;
+
+    margin-bottom:10px;
+
+    font-weight:600;
+
+    color:#334155;
+}
+
+.form-group input{
+
+    width:100%;
+
+    padding:14px 18px;
+
+    border:1.5px solid var(--border);
+
+    border-radius:var(--radius-md);
+
+    background:var(--background);
+
+    color:var(--text-primary);
+
+    font-size:15px;
+
+    transition:var(--transition);
+
+    outline:none;
+
+    box-sizing:border-box;
+}
+
+.form-group input:focus{
+
+    border-color:var(--primary);
+
+    background-color:var(--surface);
+
+    box-shadow:0 0 0 4px rgba(79, 70, 229, 0.08);
+}
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.borrow-confirm-btn{
+
+    width:100%;
+
+    border:none;
+
+    cursor:pointer;
+
+    padding:14px;
+
+    border-radius:var(--radius-md);
+
+    font-size:16px;
+
+    font-weight:700;
+
+    color:#fff;
+
+    background:var(--secondary);
+
+    transition:var(--transition);
+
+    box-shadow:0 4px 12px rgba(15, 23, 42, 0.12);
+}
+
+.borrow-confirm-btn:hover{
+
+    background:var(--secondary-hover);
+
+    transform:translateY(-2px);
+
+    box-shadow:0 8px 20px rgba(15, 23, 42, 0.22);
+}
+
+.borrow-confirm-btn:active{
+
+    transform:scale(.98);
+}
+
+/* ==========================================
+   ANIMATION
+========================================== */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:600px){
+
+.borrow-card{
+
+padding:30px 22px;
+
+}
+
+.borrow-card h1{
+
+font-size:1.8rem;
+
+}
+
+.book-info h2{
+
+font-size:1.6rem;
+
+}
+
+}

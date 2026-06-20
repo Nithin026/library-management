@@ -1,0 +1,266 @@
+/* ==========================================
+   BORROW HISTORY PAGE
+========================================== */
+
+.history-page{
+
+    min-height:100vh;
+
+    padding:50px 8%;
+
+    background:#f8fafc;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.history-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+    flex-wrap:wrap;
+}
+
+.history-header h1{
+
+    font-size:2.4rem;
+
+    font-weight:800;
+
+    color:#111827;
+
+    margin-bottom:8px;
+}
+
+.history-header p{
+
+    color:#64748b;
+
+    font-size:15px;
+}
+
+/* ==========================================
+   TABLE CONTAINER
+========================================== */
+
+.history-table-container{
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    overflow-x:auto;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.06);
+}
+
+/* ==========================================
+   TABLE
+========================================== */
+
+.history-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+.history-table thead{
+
+    background:var(--surface-hover);
+
+    color:var(--text-secondary);
+
+    border-bottom:2px solid var(--border);
+}
+
+.history-table th{
+
+    padding:16px 18px;
+
+    text-align:left;
+
+    font-size:0.8rem;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:0.05em;
+}
+
+.history-table td{
+
+    padding:18px;
+
+    color:#475569;
+
+    border-bottom:1px solid #eef2f7;
+
+    transition:.3s;
+}
+
+.history-table tbody tr{
+
+    transition:.3s;
+}
+
+.history-table tbody tr:hover{
+
+    background:#f8fbff;
+}
+
+/* ==========================================
+   STATUS BADGES
+========================================== */
+
+.status{
+
+    display:inline-block;
+
+    padding:7px 16px;
+
+    border-radius:999px;
+
+    font-size:13px;
+
+    font-weight:700;
+}
+
+.borrowed{
+
+    background:#fef3c7;
+
+    color:#b45309;
+}
+
+.returned{
+
+    background:#dcfce7;
+
+    color:#15803d;
+}
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.return-btn{
+
+    border:1.5px solid var(--secondary);
+
+    cursor:pointer;
+
+    padding:10px 20px;
+
+    border-radius:var(--radius-md);
+
+    background:var(--surface);
+
+    color:var(--secondary);
+
+    font-weight:600;
+
+    font-size:0.95rem;
+
+    transition:var(--transition);
+}
+
+.return-btn:hover{
+
+    transform:translateY(-1px);
+
+    background:var(--background);
+
+    border-color:var(--secondary);
+
+    color:var(--secondary);
+
+    box-shadow:0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+.return-btn:active{
+
+    transform:translateY(0);
+}
+
+/* ==========================================
+   RETURNED TEXT
+========================================== */
+
+.returned-text{
+
+    color:#16a34a;
+
+    font-weight:700;
+}
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+.history-table-container::-webkit-scrollbar{
+
+    height:8px;
+}
+
+.history-table-container::-webkit-scrollbar-thumb{
+
+    background:#cbd5e1;
+
+    border-radius:20px;
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:768px){
+
+.history-page{
+
+padding:30px 20px;
+
+}
+
+.history-header{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:10px;
+
+}
+
+.history-header h1{
+
+font-size:2rem;
+
+}
+
+.history-table th,
+.history-table td{
+
+padding:14px;
+
+font-size:14px;
+
+}
+
+.return-btn{
+
+width:100%;
+
+}
+
+}
