@@ -6,7 +6,14 @@
 
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![React](https://img.shields.io/badge/React-19-61DAFB?style=flat&logo=react&logoColor=black)](https://react.dev/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=flat&logo=postgresql&logoColor=white)]
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=flat&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Compatible-47A248?style=flat&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![Vite](https://img.shields.io/badge/Vite-Build-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![JWT](https://img.shields.io/badge/Auth-JWT-black?style=flat&logo=jsonwebtokens&logoColor=white)](https://jwt.io/)
+[![Vercel](https://img.shields.io/badge/Frontend-Vercel-black?style=flat&logo=vercel&logoColor=white)](https://vercel.com/)
+[![Render](https://img.shields.io/badge/Backend-Render-46E3B7?style=flat&logo=render&logoColor=white)](https://render.com/)
+[![Neon](https://img.shields.io/badge/Database-Neon-00E599?style=flat&logo=postgresql&logoColor=white)](https://neon.tech/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)
 
 </div>
 
@@ -25,6 +32,10 @@
 - [Project Architecture](#-project-architecture)
 - [Usage Guide](#-usage-guide)
 - [Deployment](#-deployment)
+  - [Database — Neon](#1️⃣-database--neon-postgresql)
+  - [Backend — Render](#2️⃣-backend--render)
+  - [Frontend — Vercel](#3️⃣-frontend--vercel)
+  - [Docker Compose (Self-Hosted)](#-alternative-docker-compose-self-hosted)
 
 ---
 
@@ -32,7 +43,7 @@
 
 This Library Management System bridges the gap between **administrators (librarians)** and **members (readers)**. Admins get a powerful, SaaS-style panel to manage inventory, monitor circulation, and analyze borrowing trends — while members get a clean dashboard for browsing the catalog, borrowing books, and tracking their reading history.
 
-The backend is built on **FastAPI's async architecture** with **JWT-based authentication**, using **SQLAlchemy** to interface with PostgreSQL.
+The backend is built on **FastAPI's async architecture** with **JWT-based authentication**, using **SQLAlchemy** to interface with PostgreSQL. The data layer is modular enough to map cleanly onto **MongoDB collections** for teams preferring a NoSQL stack.
 
 ---
 
@@ -62,7 +73,7 @@ The backend is built on **FastAPI's async architecture** with **JWT-based authen
 | **Frontend** | React 19 (Vite) · React Router DOM v7 · Axios · React Icons |
 | **Backend** | FastAPI · Uvicorn (ASGI) · SQLAlchemy · Pydantic v2 |
 | **Auth** | JWT (JSON Web Tokens) · Passlib (bcrypt) |
-| **Database** | PostgreSQL (active) · ) |
+| **Database** | PostgreSQL (active) · MongoDB (NoSQL-compatible schema) |
 | **Styling** | CSS variables · Glassmorphism gradients · CSS transitions |
 
 ---
@@ -204,7 +215,7 @@ CREATE TABLE borrow_records (
 </details>
 
 <details>
-<summary><strong>MongoDB Collections (NoSQL-Compatible Schema)</strong> — click to expand</summary>
+
 
 #### `users`
 ```json
@@ -388,7 +399,87 @@ graph TD
 
 ## 📦 Deployment
 
-### Docker Compose
+The recommended production setup uses three free-tier-friendly managed services: **Neon** for the database, **Render** for the API, and **Vercel** for the frontend.
+
+| Layer | Service | Why |
+|---|---|---|
+| Database | [Neon](https://neon.tech/) | Serverless PostgreSQL, generous free tier, instant branching |
+| Backend | [Render](https://render.com/) | Free-tier web services with native Python/Uvicorn support |
+| Frontend | [Vercel](https://vercel.com/) | Zero-config static hosting + CI/CD for Vite/React builds |
+
+### 1️⃣ Database — Neon (PostgreSQL)
+
+1. Create a free account at [neon.tech](https://neon.tech/) and spin up a new project.
+2. Create a database (e.g. `library_db`) inside the project.
+3. From the Neon dashboard, copy the **pooled connection string** — it will look like:
+   ```text
+   postgresql://<user>:<password>@<endpoint>.neon.tech/library_db?sslmode=require
+   ```
+4. Keep this connection string handy — it becomes your backend's `DATABASE_URL`.
+5. Neon databases auto-suspend when idle and resume on the next connection, so no manual scaling is required for a portfolio-scale app.
+
+### 2️⃣ Backend — Render
+
+1. Push your repository to GitHub (if not already done).
+2. On [render.com](https://render.com/), select **New → Web Service** and connect your repo.
+3. Configure the service:
+
+   | Setting | Value |
+   |---|---|
+   | **Root Directory** | `backend` |
+   | **Runtime** | Python 3 |
+   | **Build Command** | `pip install -r requirements.txt` |
+   | **Start Command** | `uvicorn app.main:app --host 0.0.0.0 --port $PORT` |
+
+4. Add the following environment variables under **Environment**:
+   ```env
+   DATABASE_URL=<your Neon pooled connection string>
+   SECRET_KEY=<a strong, unique production secret>
+   ALGORITHM=HS256
+   ACCESS_TOKEN_EXPIRE_MINUTES=30
+   ```
+5. Deploy. Render will build and expose your API at a URL like:
+   ```text
+   https://library-management-api.onrender.com
+   ```
+6. Verify it's live by visiting `https://<your-render-url>/docs`.
+
+> 💡 Render's free tier spins down after inactivity, so the first request after idle time may take a few seconds to wake the service — expected behavior, not a bug.
+
+### 3️⃣ Frontend — Vercel
+
+1. On [vercel.com](https://vercel.com/), select **Add New → Project** and import the same GitHub repo.
+2. Configure the project:
+
+   | Setting | Value |
+   |---|---|
+   | **Root Directory** | `frontend` |
+   | **Framework Preset** | Vite |
+   | **Build Command** | `npm run build` |
+   | **Output Directory** | `dist` |
+
+3. Add an environment variable so the frontend points to your live API:
+   ```env
+   VITE_API_URL=https://library-management-api.onrender.com
+   ```
+4. Deploy. Vercel will provide a live URL such as:
+   ```text
+   https://library-management.vercel.app
+   ```
+5. Every push to your default branch automatically triggers a new Vercel deployment.
+
+### ✅ Post-Deployment Checklist
+- [ ] Confirm `https://<render-url>/docs` loads the FastAPI Swagger UI
+- [ ] Confirm the Vercel app can register/login successfully (check browser network tab for CORS errors)
+- [ ] Add your Vercel domain to the backend's CORS `allow_origins` list in `app/main.py`
+- [ ] Promote a test account to `admin` directly in Neon's SQL editor to verify the admin panel
+
+---
+
+### 🐳 Alternative: Docker Compose (Self-Hosted)
+
+For local or self-hosted deployments without third-party platforms:
+
 ```bash
 # 1. Ensure Docker and Docker Compose are installed
 # 2. Populate production values in your .env files
@@ -402,6 +493,6 @@ This spins up the PostgreSQL database, runs schema migrations, starts the FastAP
 
 <div align="center">
 
-Built with FastAPI, React, and PostgreSQL
+Built with FastAPI, React, PostgreSQL · Deployed on Vercel, Render & Neon
 
 </div>
