@@ -7,13 +7,11 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![React](https://img.shields.io/badge/React-19-61DAFB?style=flat&logo=react&logoColor=black)](https://react.dev/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=flat&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-Compatible-47A248?style=flat&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 [![Vite](https://img.shields.io/badge/Vite-Build-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![JWT](https://img.shields.io/badge/Auth-JWT-black?style=flat&logo=jsonwebtokens&logoColor=white)](https://jwt.io/)
 [![Vercel](https://img.shields.io/badge/Frontend-Vercel-black?style=flat&logo=vercel&logoColor=white)](https://vercel.com/)
 [![Render](https://img.shields.io/badge/Backend-Render-46E3B7?style=flat&logo=render&logoColor=white)](https://render.com/)
 [![Neon](https://img.shields.io/badge/Database-Neon-00E599?style=flat&logo=postgresql&logoColor=white)](https://neon.tech/)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)
+
 
 </div>
 
@@ -43,8 +41,7 @@
 
 This Library Management System bridges the gap between **administrators (librarians)** and **members (readers)**. Admins get a powerful, SaaS-style panel to manage inventory, monitor circulation, and analyze borrowing trends — while members get a clean dashboard for browsing the catalog, borrowing books, and tracking their reading history.
 
-The backend is built on **FastAPI's async architecture** with **JWT-based authentication**, using **SQLAlchemy** to interface with PostgreSQL. The data layer is modular enough to map cleanly onto **MongoDB collections** for teams preferring a NoSQL stack.
-
+The backend is built on **FastAPI's async architecture** with **JWT-based authentication**, using **SQLAlchemy** to interface with PostgreSQL. 
 ---
 
 ## ⚡ Key Features
@@ -73,7 +70,7 @@ The backend is built on **FastAPI's async architecture** with **JWT-based authen
 | **Frontend** | React 19 (Vite) · React Router DOM v7 · Axios · React Icons |
 | **Backend** | FastAPI · Uvicorn (ASGI) · SQLAlchemy · Pydantic v2 |
 | **Auth** | JWT (JSON Web Tokens) · Passlib (bcrypt) |
-| **Database** | PostgreSQL (active) · MongoDB (NoSQL-compatible schema) |
+| **Database** | PostgreSQL (active) |
 | **Styling** | CSS variables · Glassmorphism gradients · CSS transitions |
 
 ---
