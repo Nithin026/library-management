@@ -166,7 +166,7 @@ library-management/
 
 ## 🗄️ Database Architecture
 
-
+<details>
 <summary><strong>PostgreSQL Tables (Active)</strong> — click to expand</summary>
 
 #### `users`
